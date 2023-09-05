@@ -36,36 +36,27 @@ const options = {
 
 flatpickr(refs.inputDate, options);
 
-function startTime(remainingTime) {
+
+    
+
+
+refs.startBtn.addEventListener("click", () => {
+ 
+    let timerId = null;
+    timerId = setInterval(() => {
+    if (remainingTime >= 0) {
     const { days, hours, minutes, seconds } = convertMs(remainingTime);
     refs.remainingDays.textContent = `${days}`;
     refs.remainingHours.textContent = `${hours}`;
     refs.remainingMinutes.textContent = `${minutes}`;
     refs.remainingSeconds.textContent = `${seconds}`;
-};
-const timer = {
-  timerId: null,
-    isActive: false,
-    start() {
-        if (this.isActive) {
-            return;
-        }
-       this.isActive = true;
-        this.timerId = setInterval(() => {
-            refs.startBtn.style.opacity = '0.9';
-            refs.startBtn.disabled = true;
-            remainingTime -= 1000;
-            startTime(remainingTime);        
-        }, 1000);
-    },
-    stop() {
-        clearInterval(this.timerId);
-        this.isActive = false;
-    },
-};
-
-refs.startBtn.addEventListener('click', () => {
-    timer.start();
+    refs.startBtn.style.opacity = '0.9';
+    refs.startBtn.disabled = true;
+    remainingTime -= 1000;
+    }
+    else {
+    clearInterval(timerId);
+    }}, 1000);
 });
 
 function addLeadingZero(value) {

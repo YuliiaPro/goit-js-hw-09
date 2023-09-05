@@ -26,7 +26,7 @@ function onButtonSubmit(evt) {
   const step = Number(refs.step.value);
   const amount = Number(refs.amount.value);
 
-  for (let i = 1; i <= amount; i += 1) {
+  for (let i = 0; i <= amount-1; i += 1) {
     let delay = inputDelay + step * i;
     
     createPromise(i, delay)
