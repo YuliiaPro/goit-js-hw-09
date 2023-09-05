@@ -16,8 +16,6 @@ refs.startBtn.style.opacity = '0.9';
 
 let remainingTime;
 
-
-
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -65,7 +63,6 @@ const timer = {
         this.isActive = false;
     },
 };
-
 
 refs.startBtn.addEventListener('click', () => {
     timer.start();
