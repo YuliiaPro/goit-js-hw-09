@@ -25,10 +25,8 @@ function onButtonSubmit(evt) {
   const inputDelay = Number(refs.inputDelay.value);
   const step = Number(refs.step.value);
   const amount = Number(refs.amount.value);
-
-  for (let i = 0; i <= amount-1; i += 1) {
-    let delay = inputDelay + step * i;
-    
+  let delay = inputDelay;
+  for (let i = 1; i <= amount; i += 1) {   
     createPromise(i, delay)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -36,6 +34,7 @@ function onButtonSubmit(evt) {
       .catch(({ position, delay }) => {
         Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+    delay = inputDelay + step * i;
   }
 }
 
